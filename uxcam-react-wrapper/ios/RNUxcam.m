@@ -88,14 +88,14 @@ RCT_EXPORT_METHOD(logEvent:(NSString*)eventName withProperties:(nullable NSDicti
 RCT_EXPORT_METHOD(urlForCurrentUser:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
     NSString *url = [UXCam urlForCurrentUser];
-    
+
     if (url) {
         resolve(url);
     } else {
         NSString *code = @"no_url";
         NSString *message = @"Could not retrieve the url for the current user.";
         NSError *error = [NSError errorWithDomain:@"RNUXCam" code:0 userInfo:nil];
-        
+
         reject(code, message, error);
     }
 }
@@ -103,14 +103,14 @@ RCT_EXPORT_METHOD(urlForCurrentUser:(RCTPromiseResolveBlock)resolve
 RCT_EXPORT_METHOD(urlForCurrentSession:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
     NSString *url = [UXCam urlForCurrentSession];
-    
+
     if (url) {
         resolve(url);
     } else {
         NSString *code = @"no_url";
         NSString *message = @"Could not retrieve the url for the current session.";
         NSError *error = [NSError errorWithDomain:@"RNUXCam" code:0 userInfo:nil];
-        
+
         reject(code, message, error);
     }
 }
@@ -134,7 +134,7 @@ RCT_EXPORT_METHOD(isRecording:(RCTPromiseResolveBlock)resolve
         NSError *error = [NSError errorWithDomain:@"RNUXCam" code:0 userInfo:nil];
         reject(code, message, error);
     }
-   
+
 }
 
 RCT_EXPORT_METHOD(optInStatus:(RCTPromiseResolveBlock)resolve
@@ -149,7 +149,7 @@ RCT_EXPORT_METHOD(optInStatus:(RCTPromiseResolveBlock)resolve
         NSError *error = [NSError errorWithDomain:@"RNUXCam" code:0 userInfo:nil];
         reject(code, message, error);
     }
-    
+
 }
 
 RCT_EXPORT_METHOD(getMultiSessionRecord:(RCTPromiseResolveBlock)resolve
@@ -164,14 +164,14 @@ RCT_EXPORT_METHOD(getMultiSessionRecord:(RCTPromiseResolveBlock)resolve
         NSError *error = [NSError errorWithDomain:@"RNUXCam" code:0 userInfo:nil];
         reject(code, message, error);
     }
-    
+
 }
 
 RCT_EXPORT_METHOD(pendingSessionCount:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
-    
+
     NSNumber *pendingCount = [NSNumber numberWithUnsignedInteger:[UXCam pendingUploads]];
-   
+
     if (pendingCount) {
         resolve(pendingCount);
     } else {
@@ -180,7 +180,7 @@ RCT_EXPORT_METHOD(pendingSessionCount:(RCTPromiseResolveBlock)resolve
         NSError *error = [NSError errorWithDomain:@"RNUXCam" code:0 userInfo:nil];
         reject(code, message, error);
     }
-    
+
 }
 
 RCT_EXPORT_METHOD(occludeSensitiveView: (nonnull NSNumber *) tag){
@@ -197,6 +197,9 @@ RCT_EXPORT_METHOD(unOccludeSensitiveView: (nonnull NSNumber *) tag){
     });
 }
 
+RCT_EXPORT_METHOD(stopRecordingScrollingOnStutterOS) {
+    [UXCam stopRecordingScrollingOnStutterOS];
+}
 
 @end
-  
+
